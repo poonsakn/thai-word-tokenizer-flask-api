@@ -1,14 +1,3 @@
-# if __name__ == "__main__":
-#     activate_this_file = "/var/www/html/resume/pywordwrap/venv/bin/activate_this.py"
-#     exec(open(activate_this_file).read(), dict(__file__=activate_this_file))
-
-#     from pythainlp import word_tokenize
-#     import sys
-# #    print("nice")
-#     if len(sys.argv) > 1:
-# #        print(sys.argv[1])
-#         print(word_tokenize(sys.argv[1], keep_whitespace=False))
-
 from flask import Flask, request, jsonify
 from pythainlp import word_tokenize
 import sys
@@ -37,7 +26,6 @@ def tokenize():
     longstr = request.args.get('text', default = "", type = str)
     words_per_line = request.args.get('wpl', default = 0, type = int) # max 100
     keep_whitespace = request.args.get('whitespace', default = False)
-#    line = request.args.get('proportion', default = 1, type = int)
     if not check_api_key():
         return jsonify({"message": "ERROR: Unauthorized"}), 401
     if longstr != "":
@@ -60,7 +48,5 @@ def tokenize():
 
 
 if __name__ == "__main__":
-#    activate_this_file = "/var/www/pywordwrap/pywordwrap/venv/bin/activate_this.py"
-#    exec(open(activate_this_file).read(), dict(__file__=activate_this_file))
     app.run()
 
